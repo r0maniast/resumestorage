@@ -24,25 +24,25 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         size = 0;
     }
 
-    public void doUpdate(Resume r, Object searchKey) {
-        storage[(Integer) searchKey] = r;
+    public void doUpdate(Resume r, Object index) {
+        storage[(Integer) index] = r;
     }
 
-    public void doSave(Resume r, Object searchKey) {
+    public void doSave(Resume r, Object index) {
         if (size >= STORAGE_LIMIT) {
             throw new StorageException("Storage overflow", r.getUuid());
         } else {
-            insertElement(r, (Integer) searchKey);
+            insertElement(r, (Integer) index);
             size++;
         }
     }
 
-    public Resume doGet(Object searchKey) {
-        return storage[(Integer) searchKey];
+    public Resume doGet(Object index) {
+        return storage[(Integer) index];
     }
 
-    public void doDelete(Object searchKey) {
-        fillDeletedElement((Integer) searchKey);
+    public void doDelete(Object index) {
+        fillDeletedElement((Integer) index);
         storage[size - 1] = null;
         size--;
     }
