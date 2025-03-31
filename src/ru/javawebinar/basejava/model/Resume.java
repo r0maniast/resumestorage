@@ -17,6 +17,8 @@ public class Resume implements Comparable<Resume> {
     }
 
     public Resume(String uuid, String fullName) {
+        Objects.requireNonNull(uuid, "uuid must not be null");
+        Objects.requireNonNull(fullName, "fullName must not be null");
         this.uuid = uuid;
         this.fullName = fullName;
     }
@@ -40,21 +42,25 @@ public class Resume implements Comparable<Resume> {
 
         Resume resume = (Resume) o;
 
-        return Objects.equals(uuid, resume.uuid);
+        if (!Objects.equals(uuid, resume.uuid)) return false;
+        return Objects.equals(fullName, resume.fullName);
     }
 
     @Override
     public int hashCode() {
-        return uuid != null ? uuid.hashCode() : 0;
+        int result = uuid != null ? uuid.hashCode() : 0;
+        result = 31 * result + (fullName != null ? fullName.hashCode() : 0);
+        return result;
     }
 
     @Override
     public String toString() {
-        return uuid;
+        return uuid + '(' + fullName + ')';
     }
 
     @Override
     public int compareTo(Resume o) {
-        return uuid.compareTo(o.uuid);
+        int cmp = fullName.compareTo(o.fullName);
+        return cmp !=0 ? cmp : uuid.compareTo(o.uuid);
     }
 }

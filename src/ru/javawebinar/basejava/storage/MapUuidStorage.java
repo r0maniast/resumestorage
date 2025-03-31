@@ -2,7 +2,10 @@ package ru.javawebinar.basejava.storage;
 
 import ru.javawebinar.basejava.model.Resume;
 
-public class MapStorage extends AbstractStorage{
+import java.util.ArrayList;
+import java.util.List;
+
+public class MapUuidStorage extends AbstractStorage{
     @Override
     protected Object getSearchKey(String uuid) {
         return null;
@@ -34,8 +37,8 @@ public class MapStorage extends AbstractStorage{
     }
 
     @Override
-    public Resume[] getAll() {
-        return new Resume[0];
+    public List<Resume> getAllSorted() {
+        return new ArrayList<>();
     }
 
     @Override
