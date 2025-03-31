@@ -1,11 +1,11 @@
-package ru.javawebinar.basejava.storage;
+package ru.basejava.storage;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.javawebinar.basejava.exception.ExistStorageException;
-import ru.javawebinar.basejava.exception.NotExistStorageException;
-import ru.javawebinar.basejava.model.Resume;
+import ru.basejava.exception.ExistStorageException;
+import ru.basejava.exception.NotExistStorageException;
+import ru.basejava.model.Resume;
 
 import java.util.List;
 

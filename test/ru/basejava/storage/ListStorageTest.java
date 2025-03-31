@@ -1,6 +1,4 @@
-package ru.javawebinar.basejava.storage;
-
-import static org.junit.jupiter.api.Assertions.*;
+package ru.basejava.storage;
 
 class ListStorageTest extends AbstractStorageTest {
     public ListStorageTest(){

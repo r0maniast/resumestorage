@@ -1,6 +1,6 @@
-package ru.javawebinar.basejava.storage;
+package ru.basejava.storage;
 
-import ru.javawebinar.basejava.model.Resume;
+import ru.basejava.model.Resume;
 
 import java.util.List;
 

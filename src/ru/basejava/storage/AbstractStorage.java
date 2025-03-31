@@ -1,8 +1,8 @@
-package ru.javawebinar.basejava.storage;
+package ru.basejava.storage;
 
-import ru.javawebinar.basejava.exception.ExistStorageException;
-import ru.javawebinar.basejava.exception.NotExistStorageException;
-import ru.javawebinar.basejava.model.Resume;
+import ru.basejava.exception.ExistStorageException;
+import ru.basejava.exception.NotExistStorageException;
+import ru.basejava.model.Resume;
 
 public abstract class AbstractStorage implements Storage {
 
@@ -16,9 +16,7 @@ public abstract class AbstractStorage implements Storage {
 
     protected abstract void doDelete(Object searchKey);
 
-    protected boolean isExist(Object searchKey) {
-        return (Integer) searchKey >= 0;
-    }
+    protected abstract boolean isExist(Object searchKey);
 
 
     @Override

@@ -1,6 +1,6 @@
-package ru.javawebinar.basejava.storage;
+package ru.basejava.storage;
 
-import ru.javawebinar.basejava.model.Resume;
+import ru.basejava.model.Resume;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,11 @@ import java.util.List;
 public class ListStorage extends AbstractStorage {
 
     protected List<Resume> storage = new ArrayList<>();
+
+    @Override
+    protected boolean isExist(Object searchKey) {
+        return (Integer) searchKey >= 0;
+    }
 
     @Override
     public int size() {

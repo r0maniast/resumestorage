@@ -1,7 +1,7 @@
-package ru.javawebinar.basejava.storage;
+package ru.basejava.storage;
 
-import ru.javawebinar.basejava.exception.StorageException;
-import ru.javawebinar.basejava.model.Resume;
+import ru.basejava.exception.StorageException;
+import ru.basejava.model.Resume;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +15,11 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     protected Resume[] storage = new Resume[STORAGE_LIMIT];
 
     protected int size = 0;
+
+    @Override
+    protected boolean isExist(Object searchKey) {
+        return (Integer) searchKey >= 0;
+    }
 
     public int size() {
         return size;

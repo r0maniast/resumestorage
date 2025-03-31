@@ -1,4 +1,4 @@
-package ru.javawebinar.basejava.exception;
+package ru.basejava.exception;
 
 public class NotExistStorageException extends StorageException{
     public NotExistStorageException(String uuid) {

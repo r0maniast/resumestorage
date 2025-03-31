@@ -1,4 +1,4 @@
-package ru.javawebinar.basejava.model;
+package ru.basejava.model;
 
 import java.util.Objects;
 import java.util.UUID;

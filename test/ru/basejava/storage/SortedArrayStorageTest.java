@@ -1,4 +1,4 @@
-package ru.javawebinar.basejava.storage;
+package ru.basejava.storage;
 
 class SortedArrayStorageTest extends AbstractArrayStorageTest {
     public SortedArrayStorageTest() {
