@@ -53,10 +53,8 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         size--;
     }
 
-    public List<Resume> getAllSorted() {
-        Resume[] r = Arrays.copyOf(storage, size);
-        Arrays.sort(r, Resume::compareTo);
-        return Arrays.asList(r);
+    public List<Resume> doCopyAll() {
+        return Arrays.asList(Arrays.copyOf(storage, size));
 
     }
 

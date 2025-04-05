@@ -12,42 +12,33 @@ public class MapUuidStorage extends AbstractStorage {
     protected Map<String, Resume> storage = new HashMap<>();
 
     @Override
-    protected boolean isExist(Object searchKey) {
-        return !"null".equals(searchKey.toString());
+    protected boolean isExist(Object uuid) {
+        return storage.containsKey((String) uuid);
     }
 
     @Override
     protected String getSearchKey(String uuid) {
-        if (storage.containsKey(uuid)) {
-            return uuid;
-        }
-        return "null";
-        /*for (Map.Entry<String, String> pair : storage.entrySet()) {
-            if (pair.getKey().equals(uuid)) {
-                return pair.getKey();
-            }
-        }
-        return null;*/
+        return uuid;
     }
 
     @Override
-    protected void doSave(Resume r, Object searchKey) {
+    protected void doSave(Resume r, Object uuid) {
         storage.put(r.getUuid(), r);
     }
 
     @Override
-    protected void doDelete(Object searchKey) {
-        storage.remove((String) searchKey);
+    protected void doDelete(Object uuid) {
+        storage.remove((String) uuid);
     }
 
     @Override
-    protected void doUpdate(Resume r, Object searchKey) {
-        storage.replace((String) searchKey, r);
+    protected void doUpdate(Resume r, Object uuid) {
+        storage.replace((String) uuid, r);
     }
 
     @Override
-    protected Resume doGet(Object searchKey) {
-        return storage.get((String) searchKey);
+    protected Resume doGet(Object uuid) {
+        return storage.get((String) uuid);
     }
 
     @Override
@@ -56,13 +47,8 @@ public class MapUuidStorage extends AbstractStorage {
     }
 
     @Override
-    public List<Resume> getAllSorted() {
-        List<Resume> resumeList = new ArrayList<>();
-        for(Map.Entry<String,Resume> pair : storage.entrySet()){
-            resumeList.add(pair.getValue());
-        }
-        resumeList.sort(Resume::compareTo);
-        return resumeList;
+    public List<Resume> doCopyAll() {
+        return new ArrayList<>(storage.values());
     }
 
     @Override
