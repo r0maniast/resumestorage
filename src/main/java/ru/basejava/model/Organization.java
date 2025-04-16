@@ -50,7 +50,7 @@ public class Organization {
                 '}';
     }
 
-    static class Position {
+    public static class Position {
         private final LocalDate startDate;
         private final LocalDate endDate;
         private final String title;
