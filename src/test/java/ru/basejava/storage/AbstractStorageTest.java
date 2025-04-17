@@ -59,6 +59,12 @@ public abstract class AbstractStorageTest {
                                 new Organization.Position(2024, Month.SEPTEMBER, "Title1", "Description1")),
                         new Organization("Institute2", "https://Institute2.com",
                                 new Organization.Position(2020, Month.SEPTEMBER, 2024, Month.AUGUST, "Title2", "Description2")))));
+        R2.addContact(ContactType.MAIL, "asdfgh@mail.ru");
+        R2.addContact(ContactType.MOBILE_PHONE, "+78945612378");
+        R2.addSection(SectionType.EXPERIENCE,
+                new OrganizationSection(List.of(
+                        new Organization("Organization1", "https://Organization1.com",
+                                new Organization.Position(2020, Month.SEPTEMBER, "position1", "Description1")))));
     }
 
 
