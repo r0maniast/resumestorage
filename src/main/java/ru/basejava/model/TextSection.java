@@ -3,6 +3,8 @@ package ru.basejava.model;
 import java.util.Objects;
 
 public class TextSection extends Section{
+    private final static long serialVersionUID = 1L;
+
     private final String content;
 
     public TextSection(String title) {

@@ -1,8 +1,11 @@
 package ru.basejava.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class LINK {
+public class LINK implements Serializable {
+    private final static long serialVersionUID = 1L;
+
     private final String name;
     private final String URL;
 
