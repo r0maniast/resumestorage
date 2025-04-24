@@ -1,10 +1,10 @@
 package ru.basejava.storage;
 
-import static org.junit.jupiter.api.Assertions.*;
+import ru.basejava.storage.serializer.ObjectStreamSerializer;
 
 class ObjectStreamStorageTest extends AbstractStorageTest{
     public ObjectStreamStorageTest(){
-        super(new ObjectStreamStorage(STORAGE_DIR));
+        super(new FileStorage(STORAGE_DIR, new ObjectStreamSerializer()));
     }
 
 }
