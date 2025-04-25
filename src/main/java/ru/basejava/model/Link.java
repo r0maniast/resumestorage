@@ -1,15 +1,21 @@
 package ru.basejava.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class LINK implements Serializable {
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Link implements Serializable {
     private final static long serialVersionUID = 1L;
 
-    private final String name;
-    private final String URL;
+    private String name;
+    private String URL;
 
-    public LINK(String name, String url) {
+    public Link() {
+    }
+
+    public Link(String name, String url) {
         Objects.requireNonNull(name, "fullName must not be null");
         this.name = name;
         this.URL = url;
@@ -29,7 +35,7 @@ public class LINK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        LINK link = (LINK) o;
+        Link link = (Link) o;
 
         if (!name.equals(link.name)) return false;
         return Objects.equals(URL, link.URL);
