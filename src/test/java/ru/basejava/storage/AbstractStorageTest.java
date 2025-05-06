@@ -52,7 +52,7 @@ public abstract class AbstractStorageTest {
                         new Organization("Organization1", "https://Organization1.com",
                                 new Organization.Position(2024, Month.SEPTEMBER, "position1", "Description1"),
                                 new Organization.Position(2024, Month.MAY, 2024, Month.SEPTEMBER, "position2", "Description1")),
-                        new Organization("Name2", "https://Name2.com",
+                        new Organization("Organization2", "https://Name2.com",
                                 new Organization.Position(2020, Month.SEPTEMBER, 2024, Month.APRIL, "Title2", "Description2")))));
         R1.addSection(SectionType.EDUCATION,
                 new OrganizationSection(List.of(
