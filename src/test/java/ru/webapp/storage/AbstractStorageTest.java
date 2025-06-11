@@ -6,9 +6,10 @@ import org.junit.jupiter.api.Test;
 import ru.webapp.Config;
 import ru.webapp.exception.ExistStorageException;
 import ru.webapp.exception.NotExistStorageException;
-import ru.webapp.model.Resume;
+import ru.webapp.model.*;
 
 import java.io.File;
+import java.time.Month;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,13 +27,13 @@ public abstract class AbstractStorageTest {
     private static final Resume R3;
     private static final Resume R4;
 
-        static {
+    static {
         R1 = new Resume(UUID_1, "Name1");
         R2 = new Resume(UUID_2, "Name2");
         R3 = new Resume(UUID_3, "Name3");
         R4 = new Resume(UUID_4, "Name4");
 
-        /*R1.addContact(ContactType.MAIL, "qwerty@mail.ru");
+        R1.addContact(ContactType.MAIL, "qwerty@mail.ru");
         R1.addContact(ContactType.MOBILE_PHONE, "+77777777777");
         R1.addSection(SectionType.PERSONAL, new TextSection("Personal data"));
         R1.addSection(SectionType.OBJECTIVE, new TextSection("Objective1"));
@@ -41,10 +42,10 @@ public abstract class AbstractStorageTest {
         R1.addSection(SectionType.EXPERIENCE,
                 new OrganizationSection(List.of(
                         new Organization("Organization1", "https://Organization1.com",
-                                new Organization.Position(2024, Month.SEPTEMBER, "position1", "Description1"),
-                                new Organization.Position(2024, Month.MAY, 2024, Month.SEPTEMBER, "position2", "Description1")),
+                                new Organization.Position(2024, Month.SEPTEMBER, "Title1", "Description1"),
+                                new Organization.Position(2024, Month.MAY, 2024, Month.SEPTEMBER, "Title2", "Description1")),
                         new Organization("Organization2", "https://Name2.com",
-                                new Organization.Position(2020, Month.SEPTEMBER, 2024, Month.APRIL, "Title2", "Description2")))));
+                                new Organization.Position(2020, Month.SEPTEMBER, 2024, Month.APRIL, "Title1", "Description2")))));
         R1.addSection(SectionType.EDUCATION,
                 new OrganizationSection(List.of(
                         new Organization("Institute1", "https://Institute1.com",
@@ -56,7 +57,7 @@ public abstract class AbstractStorageTest {
         R2.addSection(SectionType.EXPERIENCE,
                 new OrganizationSection(List.of(
                         new Organization("Organization1", "https://Organization1.com",
-                                new Organization.Position(2020, Month.SEPTEMBER, "position1", "Description1")))));*/
+                                new Organization.Position(2020, Month.SEPTEMBER, "Title1", "Description1")))));
     }
 
 
@@ -86,6 +87,12 @@ public abstract class AbstractStorageTest {
     @Test
     void update() {
         Resume newResume = new Resume(UUID_1, "NewName");
+        newResume.addContact(ContactType.MAIL, "ytrewq@mail.ru");
+        newResume.addContact(ContactType.MOBILE_PHONE, "+1234567");
+        newResume.addSection(SectionType.EXPERIENCE,
+                new OrganizationSection(
+                        new Organization("NewORG", "NewURL",
+                                new Organization.Position(2000, Month.APRIL, 2010, Month.MAY, "NewPos", "NewDesc"))));
         storage.update(newResume);
         Assertions.assertEquals(newResume, storage.get(UUID_1));
     }
@@ -121,7 +128,7 @@ public abstract class AbstractStorageTest {
 
     @Test
     void deleteNotExist() {
-        Assertions.assertThrows(NotExistStorageException.class, () -> storage.delete("dummy"));
+        Assertions.assertThrows(NotExistStorageException.class, () -> storage.delete(UUID.randomUUID().toString()));
 
     }
 
@@ -144,7 +151,7 @@ public abstract class AbstractStorageTest {
 
     @Test
     void getNotExist() {
-        Assertions.assertThrows(NotExistStorageException.class, () -> storage.get("dummy"));
+        Assertions.assertThrows(NotExistStorageException.class, () -> storage.get(UUID.randomUUID().toString()));
 
     }
 
