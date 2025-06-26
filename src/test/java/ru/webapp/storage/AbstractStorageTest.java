@@ -33,28 +33,28 @@ public abstract class AbstractStorageTest {
         R3 = new Resume(UUID_3, "Name3");
         R4 = new Resume(UUID_4, "Name4");
 
-        R1.addContact(ContactType.MAIL, "qwerty@mail.ru");
-        R1.addContact(ContactType.MOBILE_PHONE, "+77777777777");
-        R1.addSection(SectionType.PERSONAL, new TextSection("Personal data"));
-        R1.addSection(SectionType.OBJECTIVE, new TextSection("Objective1"));
-        R1.addSection(SectionType.ACHIEVEMENT, new ListSection("Achievement1", "Achievement12", "Achievement123"));
-        R1.addSection(SectionType.QUALIFICATIONS, new ListSection("JAVA", "Git", "SQL"));
-        R1.addSection(SectionType.EXPERIENCE,
+        R1.setContact(ContactType.MAIL, "qwerty@mail.ru");
+        R1.setContact(ContactType.MOBILE_PHONE, "+77777777777");
+        R1.setSection(SectionType.PERSONAL, new TextSection("Personal data"));
+        R1.setSection(SectionType.OBJECTIVE, new TextSection("Objective1"));
+        R1.setSection(SectionType.ACHIEVEMENT, new ListSection("Achievement1", "Achievement12", "Achievement123"));
+        R1.setSection(SectionType.QUALIFICATIONS, new ListSection("JAVA", "Git", "SQL"));
+        R1.setSection(SectionType.EXPERIENCE,
                 new OrganizationSection(List.of(
                         new Organization("Organization1", "https://Organization1.com",
                                 new Organization.Position(2024, Month.SEPTEMBER, "Title1", "Description1"),
                                 new Organization.Position(2024, Month.MAY, 2024, Month.SEPTEMBER, "Title2", "Description1")),
                         new Organization("Organization2", "https://Name2.com",
                                 new Organization.Position(2020, Month.SEPTEMBER, 2024, Month.APRIL, "Title1", "Description2")))));
-        R1.addSection(SectionType.EDUCATION,
+        R1.setSection(SectionType.EDUCATION,
                 new OrganizationSection(List.of(
                         new Organization("Institute1", "https://Institute1.com",
                                 new Organization.Position(2024, Month.SEPTEMBER, "Title1", "Description1")),
                         new Organization("Institute2", "https://Institute2.com",
                                 new Organization.Position(2020, Month.SEPTEMBER, 2024, Month.AUGUST, "Title2", "Description2")))));
-        R2.addContact(ContactType.MAIL, "asdfgh@mail.ru");
-        R2.addContact(ContactType.MOBILE_PHONE, "+78945612378");
-        R2.addSection(SectionType.EXPERIENCE,
+        R2.setContact(ContactType.MAIL, "asdfgh@mail.ru");
+        R2.setContact(ContactType.MOBILE_PHONE, "+78945612378");
+        R2.setSection(SectionType.EXPERIENCE,
                 new OrganizationSection(List.of(
                         new Organization("Organization1", "https://Organization1.com",
                                 new Organization.Position(2020, Month.SEPTEMBER, "Title1", "Description1")))));
@@ -87,9 +87,9 @@ public abstract class AbstractStorageTest {
     @Test
     void update() {
         Resume newResume = new Resume(UUID_1, "NewName");
-        newResume.addContact(ContactType.MAIL, "ytrewq@mail.ru");
-        newResume.addContact(ContactType.MOBILE_PHONE, "+1234567");
-        newResume.addSection(SectionType.EXPERIENCE,
+        newResume.setContact(ContactType.MAIL, "ytrewq@mail.ru");
+        newResume.setContact(ContactType.MOBILE_PHONE, "+1234567");
+        newResume.setSection(SectionType.EXPERIENCE,
                 new OrganizationSection(
                         new Organization("NewORG", "NewURL",
                                 new Organization.Position(2000, Month.APRIL, 2010, Month.MAY, "NewPos", "NewDesc"))));

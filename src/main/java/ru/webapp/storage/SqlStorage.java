@@ -19,6 +19,11 @@ public class SqlStorage implements Storage {
 
 
     public SqlStorage(String dbUrl, String dbUser, String dbPassword) {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new IllegalStateException(e);
+        }
         sqlHelper = new SqlHelper(() -> DriverManager.getConnection(dbUrl, dbUser, dbPassword));
     }
 
@@ -162,7 +167,7 @@ public class SqlStorage implements Storage {
         if (t != null) {
             ContactType type = ContactType.valueOf(t);
             String value = rs.getString("value_contact");
-            r.addContact(type, value);
+            r.setContact(type, value);
         }
     }
 
@@ -192,11 +197,11 @@ public class SqlStorage implements Storage {
             SectionType st = SectionType.valueOf(t);
             switch (st) {
                 case PERSONAL, OBJECTIVE ->
-                        r.addSection(st, gson.fromJson(rs.getString("value_section"), TextSection.class));
+                        r.setSection(st, gson.fromJson(rs.getString("value_section"), TextSection.class));
                 case ACHIEVEMENT, QUALIFICATIONS ->
-                        r.addSection(st, gson.fromJson(rs.getString("value_section"), ListSection.class));
+                        r.setSection(st, gson.fromJson(rs.getString("value_section"), ListSection.class));
                 case EXPERIENCE, EDUCATION ->
-                        r.addSection(st, gson.fromJson(rs.getString("value_section"), OrganizationSection.class));
+                        r.setSection(st, gson.fromJson(rs.getString("value_section"), OrganizationSection.class));
             }
         }
     }

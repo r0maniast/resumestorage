@@ -1,9 +1,13 @@
 package ru.webapp.model;
 
+import java.io.Serial;
 import java.util.Objects;
 
 public class TextSection extends Section{
+    @Serial
     private final static long serialVersionUID = 1L;
+
+    public static final TextSection EMPTY = new TextSection("");
 
     private String content;
 
@@ -36,8 +40,6 @@ public class TextSection extends Section{
 
     @Override
     public String toString() {
-        return "TextSection{" +
-                "content='" + content + '\'' +
-                '}';
+        return content;
     }
 }

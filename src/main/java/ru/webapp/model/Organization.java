@@ -5,6 +5,7 @@ import ru.webapp.util.LocalDateXmlAdapter;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Month;
@@ -18,7 +19,10 @@ import static ru.webapp.util.DateUtil.of;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Organization implements Serializable {
+    @Serial
     private final static long serialVersionUID = 1L;
+
+    public static final Organization EMPTY = new Organization("","",Position.EMPTY);
 
     private Link homePage;
 
@@ -69,6 +73,8 @@ public class Organization implements Serializable {
 
     @XmlAccessorType(XmlAccessType.FIELD)
     public static class Position implements Serializable {
+        public static final Position EMPTY = new Position();
+
         @XmlJavaTypeAdapter(LocalDateXmlAdapter.class)
         private LocalDate startDate;
         @XmlJavaTypeAdapter(LocalDateXmlAdapter.class)

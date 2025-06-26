@@ -2,15 +2,17 @@ package ru.webapp.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Link implements Serializable {
+    @Serial
     private final static long serialVersionUID = 1L;
 
     private String name;
-    private String URL;
+    private String url;
 
     public Link() {
     }
@@ -18,11 +20,11 @@ public class Link implements Serializable {
     public Link(String name, String url) {
         Objects.requireNonNull(name, "fullName must not be null");
         this.name = name;
-        this.URL = url;
+        this.url = url;
     }
 
-    public String getURL() {
-        return URL;
+    public String getUrl() {
+        return url;
     }
 
     public String getName() {
@@ -38,13 +40,13 @@ public class Link implements Serializable {
         Link link = (Link) o;
 
         if (!name.equals(link.name)) return false;
-        return Objects.equals(URL, link.URL);
+        return Objects.equals(url, link.url);
     }
 
     @Override
     public int hashCode() {
         int result = name.hashCode();
-        result = 31 * result + (URL != null ? URL.hashCode() : 0);
+        result = 31 * result + (url != null ? url.hashCode() : 0);
         return result;
     }
 
@@ -52,7 +54,7 @@ public class Link implements Serializable {
     public String toString() {
         return "LINK{" +
                 "name='" + name + '\'' +
-                ", URL='" + URL + '\'' +
+                ", URL='" + url + '\'' +
                 '}';
     }
 }
