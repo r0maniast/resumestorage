@@ -1,6 +1,6 @@
 package ru.webapp.storage;
 
-class MapUuidStorageTest extends AbstractStorageTest{
+public class MapUuidStorageTest extends AbstractStorageTest{
     protected MapUuidStorageTest(){
         super(new MapUuidStorage());
     }
