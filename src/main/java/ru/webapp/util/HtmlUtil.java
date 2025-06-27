@@ -1,12 +1,21 @@
 package ru.webapp.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.webapp.model.Organization;
 
 public class HtmlUtil {
-    public static boolean isEmpty(String str){
-        return str == null || str.trim().length() == 0;
+    private static final Logger log = LoggerFactory.getLogger(HtmlUtil.class);
+
+    public static boolean isEmpty(String str) {
+        boolean result = str == null || str.trim().isEmpty();
+        log.debug("Checked if string is empty: '{}', result: {}", str, result);
+        return result;
     }
-    public static String formatDates(Organization.Position position){
-        return DateUtil.format(position.getStartDate()) + " - " + DateUtil.format(position.getEndDate());
+
+    public static String formatDates(Organization.Position position) {
+        String formatted = DateUtil.format(position.getStartDate()) + " - " + DateUtil.format(position.getEndDate());
+        log.debug("Formatted dates for position '{}': {}", position.getTitle(), formatted);
+        return formatted;
     }
 }

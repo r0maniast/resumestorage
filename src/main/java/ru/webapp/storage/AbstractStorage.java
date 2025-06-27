@@ -1,5 +1,7 @@
 package ru.webapp.storage;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.webapp.exception.ExistStorageException;
 import ru.webapp.exception.NotExistStorageException;
 import ru.webapp.model.Resume;
@@ -8,52 +10,69 @@ import java.util.Collections;
 import java.util.List;
 
 public abstract class AbstractStorage<SK> implements Storage {
+    private static final Logger log = LoggerFactory.getLogger(AbstractStorage.class);
 
     @Override
     public void update(Resume r) {
+        log.info("Updating resume: {}", r.getUuid());
         SK searchKey = getExistedSearchKey(r.getUuid());
         doUpdate(r, searchKey);
+        log.info("Resume updated successfully: {}", r.getUuid());
     }
 
     @Override
     public void save(Resume r) {
+        log.info("Saving resume: {}", r.getUuid());
         SK searchKey = getNotExistedSearchKey(r.getUuid());
         doSave(r, searchKey);
+        log.info("Resume saved successfully: {}", r.getUuid());
     }
 
     @Override
     public Resume get(String uuid) {
+        log.info("Retrieving resume: {}", uuid);
         SK searchKey = getExistedSearchKey(uuid);
-        return doGet(searchKey);
+        Resume r = doGet(searchKey);
+        log.info("Resume retrieved successfully: {}", uuid);
+        return r;
     }
-
 
     @Override
     public void delete(String uuid) {
+        log.info("Deleting resume: {}", uuid);
         SK searchKey = getExistedSearchKey(uuid);
         doDelete(searchKey);
+        log.info("Resume deleted successfully: {}", uuid);
     }
 
     @Override
     public List<Resume> getAllSorted() {
+        log.info("Retrieving all resumes sorted");
         List<Resume> list = doCopyAll();
         Collections.sort(list);
+        log.info("Retrieved {} resumes", list.size());
         return list;
     }
 
     private SK getExistedSearchKey(String uuid) {
+        log.debug("Checking existence for uuid={}", uuid);
         SK searchKey = getSearchKey(uuid);
         if (!isExist(searchKey)) {
+            log.warn("Resume does not exist: {}", uuid);
             throw new NotExistStorageException(uuid);
         }
+        log.debug("Resume exists: {}", uuid);
         return searchKey;
     }
 
     private SK getNotExistedSearchKey(String uuid) {
+        log.debug("Checking non-existence for uuid={}", uuid);
         SK searchKey = getSearchKey(uuid);
         if (isExist(searchKey)) {
+            log.warn("Resume already exists: {}", uuid);
             throw new ExistStorageException(uuid);
         }
+        log.debug("Resume does not exist (as expected): {}", uuid);
         return searchKey;
     }
 
