@@ -6,7 +6,7 @@ meta:
     version: "17"
 build:
   image: null
-  args: mvn clean package -DskipTests
+  args:
   artifacts:
     target/*.jar: /
 run:
