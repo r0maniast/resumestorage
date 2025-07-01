@@ -6,7 +6,7 @@ meta:
     version: "17"
 build:
   image: null
-  args:
+  args: " mvn clean package"
   artifacts:
     target/*.jar: /
 run:
