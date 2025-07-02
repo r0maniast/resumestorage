@@ -1,3 +1,7 @@
+create type public.contact_type as enum ('MOBILE_PHONE', 'MAIL', 'TELEGRAM', 'LINKEDIN', 'GITHUB', 'STACKOVERFLOW');
+
+create type public.section_type as enum ('PERSONAL', 'OBJECTIVE', 'ACHIEVEMENT', 'QUALIFICATIONS', 'EXPERIENCE', 'EDUCATION');
+
 create table public.resume
 (
     uuid      uuid not null
@@ -5,9 +9,6 @@ create table public.resume
             primary key,
     full_name text not null
 );
-
-alter table public.resume
-    owner to postgres;
 
 create table public.contact
 (
@@ -20,9 +21,6 @@ create table public.contact
     type_contact  contact_type not null,
     value_contact text         not null
 );
-
-alter table public.contact
-    owner to postgres;
 
 create unique index contact_uuid_type_index
     on public.contact (resume_uuid, type_contact);
@@ -40,9 +38,7 @@ create table public.section
     value_section jsonb        not null
 );
 
-alter table public.section
-    owner to postgres;
-
 create index section_resume_uuid_type_section_index
     on public.section (resume_uuid, type_section);
+
 
