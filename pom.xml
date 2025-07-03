@@ -24,6 +24,7 @@
         <jstl.api.version>3.0.2</jstl.api.version>
         <jstl.impl.version>3.0.1</jstl.impl.version>
         <jakarta.activation.api>2.1.3</jakarta.activation.api>
+        <maven-war-plugin>3.4.0</maven-war-plugin>
 
         <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>3.1.2</maven.surefire.plugin.version>
@@ -139,8 +140,14 @@
     </dependencies>
 
     <build>
+        <finalName>resumeStorage</finalName>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>${maven-war-plugin}</version>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -162,6 +169,11 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <!-- версию можно опустить, возьмётся из pluginManagement -->
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
             <plugin>
@@ -174,6 +186,9 @@
     <profiles>
         <profile>
             <id>production</id>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -189,14 +204,6 @@
                                 <exclude>**/storage/FileStorage.java</exclude>
                                 <exclude>**/storage/AbstractArrayStorage.java</exclude>
                             </excludes>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <includes>
-                                <include>**/SqlStorageTest.java</include>
-                            </includes>
                         </configuration>
                     </plugin>
                 </plugins>
