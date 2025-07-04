@@ -4,11 +4,10 @@ COPY pom.xml .
 COPY src ./src
 RUN mvn clean package -Pproduction
 
-FROM tomcat:9.0-jdk17
+FROM tomcat:11.0-jdk17
 RUN rm -rf /usr/local/tomcat/webapps/*
-ENV db.url=
-ENV db.user=
-ENV db.password=
+RUN sed -i 's/<Server port="8005"/<Server port="-1"/' \
+    /usr/local/tomcat/conf/server.xml
 COPY --from=build /app/target/resumeStorage.war \
      /usr/local/tomcat/webapps/ROOT.war
 EXPOSE 8080
