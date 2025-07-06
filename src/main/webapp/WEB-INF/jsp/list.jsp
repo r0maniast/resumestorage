@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="css/list.css">
+    <link rel="stylesheet" href="css/main.css">
     <title>Список всех резюме</title>
 </head>
 <body>
@@ -18,15 +18,15 @@
             <th>Имя</th>
             <th>Email</th>
             <th></th>
-            <th><a href="resume?action=add">Новое резюме</a></th>
+            <th></th>
         </tr>
         <c:forEach items="${resumes}" var="resume">
             <jsp:useBean id="resume" type="ru.webapp.model.Resume"/>
             <tr>
                 <td><a href="resume?uuid=${resume.uuid}&action=view">${resume.fullName}</a></td>
                 <td>${resume.getContact(ContactType.MAIL)}</td>
-                <td><a href="resume?uuid=${resume.uuid}&action=delete">Delete</a></td>
-                <td><a href="resume?uuid=${resume.uuid}&action=edit">Edit</a></td>
+                <td><a class="btn" href="resume?uuid=${resume.uuid}&action=delete">Delete</a></td>
+                <td><a class="btn" href="resume?uuid=${resume.uuid}&action=edit">Edit</a></td>
             </tr>
         </c:forEach>
     </table>

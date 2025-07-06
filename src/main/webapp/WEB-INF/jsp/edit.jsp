@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="css/edit.css">
+    <link rel="stylesheet" href="css/main.css">
     <jsp:useBean id="resume" type="ru.webapp.model.Resume" scope="request"/>
     <title>Резюме ${resume.fullName}</title>
 </head>
@@ -17,9 +17,8 @@
 <section>
     <form method="post" action="resume">
         <input type="hidden" name="uuid" value="${resume.uuid}">
-        <h1>Имя:</h1>
+        <h3>Полное имя:</h3>
         <dl>
-            <dt>Имя:</dt>
             <dd>
                 <input type="text" name="fullName" size="50" value="${resume.fullName}">
             </dd>
@@ -103,8 +102,8 @@
                 </c:when>
             </c:choose>
         </c:forEach>
-        <button type="submit">Сохранить</button>
-        <button onclick="window.history.back()">Отменить</button>
+        <button class="btn" type="submit">Сохранить</button>
+        <button class="btn" type="button" onclick="window.history.back()">Отменить</button>
     </form>
 </section>
 <jsp:include page="fragments/footer.jsp"/>

@@ -7,14 +7,14 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="css/view.css">
+    <link rel="stylesheet" href="css/main.css">
     <jsp:useBean id="resume" type="ru.webapp.model.Resume" scope="request"/>
     <title>Резюме ${resume.fullName}</title>
 </head>
 <body>
 <jsp:include page="fragments/header.jsp"/>
 <section>
-    <h1>${resume.fullName}&nbsp;<a href="resume?uuid=${resume.uuid}&action=edit"><img src="img/pencil.png" width="20"
+    <h1>${resume.fullName}&nbsp;<a class="btn" href="resume?uuid=${resume.uuid}&action=edit"><img src="img/pencil.png" width="20"
                                                                                       height="20"
                                                                                       alt="Редактировать"></a></h1>
     <p>
@@ -33,7 +33,7 @@
             <c:set var="section" value="${sectionEntry.value}"/>
             <jsp:useBean id="section" type="ru.webapp.model.Section"/>
             <tr>
-                <th><a id="type.name">${type.title}</a></th>
+                <th><span class="section-title">${type.title}</span></th>
             </tr>
             <c:choose>
                 <c:when test="${type=='OBJECTIVE'}">
@@ -45,7 +45,7 @@
                 </c:when>
                 <c:when test="${type=='PERSONAL'}">
                     <tr>
-                        <td>
+                        <td colspan="2">
                             <%=((TextSection) section).getContent()%>
                         </td>
                     </tr>
@@ -67,10 +67,10 @@
                             <td colspan="2">
                                 <c:choose>
                                     <c:when test="${empty org.homePage.url}">
-                                        <h3>${org.homePage.name}</h3>
+                                        <span class="org-title">${org.homePage.name}</span>
                                     </c:when>
                                     <c:otherwise>
-                                        <h3><a href="${org.homePage.url}">${org.homePage.name}</a></h3>
+                                        <a class="org-title" href="${org.homePage.url}">${org.homePage.name}</a>
                                     </c:otherwise>
                                 </c:choose>
                             </td>
@@ -78,8 +78,7 @@
                         <c:forEach var="position" items="${org.positions}">
                             <jsp:useBean id="position" type="ru.webapp.model.Organization.Position"/>
                             <tr>
-                                <td width="15%"><%=HtmlUtil.formatDates(position)%>
-                                </td>
+                                <td width="15%"><%=HtmlUtil.formatDates(position)%></td>
                                 <td><b>${position.title}</b><br>${position.description}</td>
                             </tr>
                         </c:forEach>
@@ -90,7 +89,7 @@
     </table>
     <br>
     <br>
-    <button onclick="window.history.back()">Вернуться к списку</button>
+    <button class="btn" type="button" onclick="window.history.back()">Вернуться к списку</button>
 </section>
 <jsp:include page="fragments/footer.jsp"/>
 </body>
