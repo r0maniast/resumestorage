@@ -10,13 +10,17 @@
         <servlet-name>resumeServlet</servlet-name>
         <servlet-class>ru.webapp.web.ResumeServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
+        <servlet-mapping>
         <servlet-name>resumeServlet</servlet-name>
         <url-pattern>/resume</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>resumeServlet</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
     <display-name>ResumesApp</display-name>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>resume</welcome-file>
     </welcome-file-list>
 </web-app>

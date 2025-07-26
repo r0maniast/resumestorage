@@ -117,6 +117,16 @@ public class ResumeServlet extends HttpServlet {
         String uuid = request.getParameter("uuid");
         log.debug("Received parameters: action={}, uuid={}", action, uuid);
 
+        String requestURI = request.getRequestURI();
+        String contextPath = request.getContextPath();
+        String path = requestURI.substring(contextPath.length());
+        
+        if (!path.equals("/resume") && !path.equals("/") && action == null) {
+            log.debug("Invalid URL requested: {}, redirecting to resume list", path);
+            response.sendRedirect("resume");
+            return;
+        }
+
         if (action == null) {
             request.setAttribute("resumes", storage.getAllSorted());
             request.getRequestDispatcher("/WEB-INF/jsp/list.jsp").forward(request, response);
