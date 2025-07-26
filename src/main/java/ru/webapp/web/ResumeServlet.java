@@ -121,6 +121,14 @@ public class ResumeServlet extends HttpServlet {
         String contextPath = request.getContextPath();
         String path = requestURI.substring(contextPath.length());
         
+        log.debug("Request analysis: requestURI={}, contextPath={}, path={}, action={}", 
+                 requestURI, contextPath, path, action);
+
+        if (path.startsWith("/css/") || path.startsWith("/img/")) {
+            log.debug("Static resource requested: {}, passing to default servlet", path);
+            return;
+        }
+        
         if (!path.equals("/resume") && !path.equals("/") && action == null) {
             log.debug("Invalid URL requested: {}, redirecting to resume list", path);
             response.sendRedirect("resume");
