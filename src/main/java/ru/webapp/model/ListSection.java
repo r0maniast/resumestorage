@@ -29,6 +29,10 @@ public class ListSection extends Section{
         return items;
     }
 
+    public String getItemsString() {
+        return String.join("\n", items);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

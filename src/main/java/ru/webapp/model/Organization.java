@@ -1,5 +1,6 @@
 package ru.webapp.model;
 
+import ru.webapp.util.DateUtil;
 import ru.webapp.util.LocalDateXmlAdapter;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
@@ -117,6 +118,18 @@ public class Organization implements Serializable {
 
         public String getDescription() {
             return description;
+        }
+
+        public String getStartDateFormatted() {
+            return DateUtil.format(startDate);
+        }
+
+        public String getEndDateFormatted() {
+            return DateUtil.format(endDate);
+        }
+
+        public String getDatesFormatted() {
+            return DateUtil.format(startDate) + " - " + DateUtil.format(endDate);
         }
 
         @Override

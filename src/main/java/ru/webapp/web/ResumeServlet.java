@@ -191,6 +191,8 @@ public class ResumeServlet extends HttpServlet {
             }
         }
         request.setAttribute("resume", r);
+        request.setAttribute("contactTypes", ContactType.values());
+        request.setAttribute("sectionTypes", SectionType.values());
         String jsp = "view".equals(action) ? "/WEB-INF/jsp/view.jsp" : "/WEB-INF/jsp/edit.jsp";
         request.getRequestDispatcher(jsp).forward(request, response);
         log.debug("Forwarded to {}", jsp);

@@ -1,7 +1,3 @@
-<%@ page import="ru.webapp.model.TextSection" %>
-<%@ page import="ru.webapp.model.ListSection" %>
-<%@ page import="ru.webapp.model.OrganizationSection" %>
-<%@ page import="ru.webapp.util.HtmlUtil" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -21,19 +17,14 @@
                                                                                       alt="Редактировать"></a></h1>
     <p>
         <c:forEach var="contactEntry" items="${resume.contacts}">
-            <jsp:useBean id="contactEntry"
-                         type="java.util.Map.Entry<ru.webapp.model.ContactType, java.lang.String>"/>
-            <%=contactEntry.getKey().toHtml(contactEntry.getValue())%><br/>
+            ${contactEntry.key.toHtml(contactEntry.value)}<br/>
         </c:forEach>
     </p>
     <hr>
     <table>
         <c:forEach var="sectionEntry" items="${resume.sections}">
-            <jsp:useBean id="sectionEntry"
-                         type="java.util.Map.Entry<ru.webapp.model.SectionType, ru.webapp.model.Section>"/>
             <c:set var="type" value="${sectionEntry.key}"/>
             <c:set var="section" value="${sectionEntry.value}"/>
-            <jsp:useBean id="section" type="ru.webapp.model.Section"/>
             <tr>
                 <th><span class="section-title">${type.title}</span></th>
             </tr>
@@ -41,14 +32,14 @@
                 <c:when test="${type=='OBJECTIVE'}">
                     <tr>
                         <td>
-                            <%=((TextSection) section).getContent()%>
+                            ${section.content}
                         </td>
                     </tr>
                 </c:when>
                 <c:when test="${type=='PERSONAL'}">
                     <tr>
                         <td colspan="2">
-                            <%=((TextSection) section).getContent()%>
+                            ${section.content}
                         </td>
                     </tr>
                 </c:when>
@@ -56,7 +47,7 @@
                     <tr>
                         <td colspan="2">
                             <ul>
-                                <c:forEach var="item" items="<%=((ListSection) section).getItems()%>">
+                                <c:forEach var="item" items="${section.items}">
                                     <li>${item}</li>
                                 </c:forEach>
                             </ul>
@@ -64,7 +55,7 @@
                     </tr>
                 </c:when>
                 <c:when test="${type=='EXPERIENCE' || type=='EDUCATION'}">
-                    <c:forEach var="org" items="<%=((OrganizationSection) section).getOrganizations()%>">
+                    <c:forEach var="org" items="${section.organizations}">
                         <tr>
                             <td colspan="2">
                                 <c:choose>
@@ -77,11 +68,10 @@
                                 </c:choose>
                             </td>
                         </tr>
-                        <c:forEach var="position" items="${org.positions}">
-                            <jsp:useBean id="position" type="ru.webapp.model.Organization.Position"/>
+                        <c:forEach var="pos" items="${org.positions}">
                             <tr>
-                                <td width="15%"><%=HtmlUtil.formatDates(position)%></td>
-                                <td><b>${position.title}</b><br>${position.description}</td>
+                                <td width="15%">${pos.datesFormatted}</td>
+                                <td><b>${pos.title}</b><br>${pos.description}</td>
                             </tr>
                         </c:forEach>
                     </c:forEach>
