@@ -8,7 +8,7 @@
 
     <servlet>
         <servlet-name>resumeServlet</servlet-name>
-        <servlet-class>ru.webapp.web.ResumeServlet</servlet-class>
+        <servlet-class>ru.romankrivtsov.resume_storage.web.ResumeServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>resumeServlet</servlet-name>

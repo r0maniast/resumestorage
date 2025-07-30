@@ -1,6 +1,6 @@
 <%@ page import="java.util.List" %>
-<%@ page import="ru.webapp.model.Resume" %>
-<%@ page import="ru.webapp.model.ContactType" %>
+<%@ page import="ru.romankrivtsov.resume_storage.model.Resume" %>
+<%@ page import="ru.romankrivtsov.resume_storage.model.ContactType" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -22,7 +22,7 @@
             <th></th>
         </tr>
         <c:forEach items="${resumes}" var="resume">
-            <jsp:useBean id="resume" type="ru.webapp.model.Resume"/>
+            <jsp:useBean id="resume" type="ru.romankrivtsov.resume_storage.model.Resume"/>
             <tr>
                 <td><a href="resume?uuid=${resume.uuid}&action=view">${resume.fullName}</a></td>
                 <td>${resume.getContact(ContactType.MAIL)}</td>

@@ -6,7 +6,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="css/main.css">
-    <jsp:useBean id="resume" type="ru.webapp.model.Resume" scope="request"/>
+    <jsp:useBean id="resume" type="ru.romankrivtsov.resume_storage.model.Resume" scope="request"/>
     <title>Резюме ${resume.fullName}</title>
 </head>
 <body>
