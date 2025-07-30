@@ -4,7 +4,7 @@ out
 log
 lib
 logs
-storage
+/storage
 target
 
 
